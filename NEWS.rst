@@ -1,20 +1,12 @@
 Current release
 ---------------
 
-What's new in pgmp 1.0.5
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Released on 2023-09-11.
-
-- Fixed compatibility with PostgreSQL 16 (:issue:`#27`)
-
-
 What's new in pgmp 1.0.4
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Released on 2020-02-06.
+Not released yet.
 
-- Fixed compatibility with GMP 6.2 (:issue:`#18`)
+- Fixed compatibility with GMP 6.2 (:issue:`#16`)
 
 
 What's new in pgmp 1.0.3
