@@ -15,3 +15,5 @@ sandbox/bench/*.png
 sandbox/pi/*.txt
 dist/*
 src/*.bc
+src/*.o
+sql/pgmp--*
