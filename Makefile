@@ -57,11 +57,6 @@ DATA = $(INSTALLSCRIPT) $(UPGRADESCRIPT)
 REGRESS = --inputdir=test setup mpz mpq
 EXTRA_CLEAN = $(INSTALLSCRIPT) $(UPGRADESCRIPT)
 
-PKGNAME = pgmp-$(EXT_LONGVER)
-SRCPKG = $(SRCPKG_TGZ) $(SRCPKG_ZIP)
-SRCPKG_TGZ = dist/$(PKGNAME).tar.gz
-SRCPKG_ZIP = dist/$(PKGNAME).zip
-
 USE_PGXS=1
 PGXS := $(shell $(PG_CONFIG) --pgxs)
 include $(PGXS)
@@ -77,14 +72,3 @@ $(UPGRADESCRIPT): $(INSTALLSCRIPT)
 
 docs:
 	$(MAKE) -C docs
-
-sdist: $(SRCPKG)
-
-$(SRCPKG): $(PKGFILES)
-	ln -sf . $(PKGNAME)
-	mkdir -p dist
-	rm -f $(SRCPKG_TGZ)
-	tar czvf $(SRCPKG_TGZ) $(addprefix $(PKGNAME)/,$^)
-	rm -f $(SRCPKG_ZIP)
-	zip -r $(SRCPKG_ZIP) $(addprefix $(PKGNAME)/,$^)
-	rm $(PKGNAME)
