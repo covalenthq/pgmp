@@ -421,6 +421,8 @@ PGMP_PG_FUNCTION(pmpz_from_bytea_signed)
     bytea *data = PG_GETARG_BYTEA_PP(0);
     int data_len = VARSIZE_ANY_EXHDR(data);
     char *data_body = VARDATA_ANY(data);
+    char *data_buf;
+    bool is_neg;
     mpz_t result_z;
 
     mpz_init(result_z);
@@ -429,8 +431,7 @@ PGMP_PG_FUNCTION(pmpz_from_bytea_signed)
         PGMP_RETURN_MPZ(result_z);
     }
 
-    char *data_buf = data_body;
-    bool is_neg = data_body[0] & 0x80;
+    is_neg = data_body[0] & 0x80;
 
     if(is_neg) {
         data_buf = palloc(data_len);
@@ -461,6 +462,8 @@ PGMP_PG_FUNCTION(pmpz_from_bytea_signed)
                 data_buf[i] = ~(data_body[i]);
             }
         }
+    } else {
+        data_buf = data_body;
     }
 
     if(!(data_len & 7)) {
