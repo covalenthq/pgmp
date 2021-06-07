@@ -57,8 +57,8 @@ DATA = $(INSTALLSCRIPT) $(UPGRADESCRIPT)
 REGRESS = --inputdir=test setup mpz mpq
 EXTRA_CLEAN = $(INSTALLSCRIPT) $(UPGRADESCRIPT)
 
-PG_CFLAGS = -I/usr/local/include
-PG_LDFLAGS = -L/usr/local/lib
+PG_CFLAGS += -I/usr/local/include $(shell pkg-config --cflags gmp)
+PG_LDFLAGS += -L/usr/local/lib $(shell pkg-config --libs gmp)
 
 USE_PGXS=1
 PGXS := $(shell $(PG_CONFIG) --pgxs)
